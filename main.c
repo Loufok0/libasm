@@ -45,10 +45,6 @@ int main()
 		write(1, "this is a write test with write\n", 32);
 		ft_write(1, "this is a write test with ft_write\n", 35);
 
-		write(1, "this is a write test with write\n", 40);
-		ft_write(1, "this is a write test with ft_write\n", 40);
-
-
 		printf("\n\n");
 
 	}
