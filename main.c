@@ -1,11 +1,13 @@
 #include <string.h>
 #include <stdio.h>
+#include <unistd.h>
 #include <stdlib.h>
 #include "colors.hpp"
 
 int ft_strlen(char *str);
 int ft_strcpy(char *dst, char *src);
 int ft_strcmp(char *str1, char *str2);
+int ft_write(int fd, const void *str, int size);
 
 
 int main()
@@ -39,6 +41,12 @@ int main()
 			printf(RED "Difference in strcmp funcions: %d, %d\n\n" RESET, ret1, ret2);
 		else
 			printf(GREEN "No difference in strcmp funcions: %d, %d\n\n" RESET, ret1, ret2);
+
+		write(1, "this is a write test with write\n", 32);
+		ft_write(1, "this is a write test with ft_write\n", 35);
+
+		write(1, "this is a write test with write\n", 40);
+		ft_write(1, "this is a write test with ft_write\n", 40);
 
 
 		printf("\n\n");
