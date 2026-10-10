@@ -9,10 +9,14 @@ ASFLAGS = -f elf64
 
 AR = ar crs
 
-MAIN = main.s
-MAIN_OBJ = $(MAIN:.s=.o)
+MAIN = main.c
+MAIN_OBJ = $(MAIN:.c=.o)
 
-SRCS = ft_strlen.s
+SRCS_FOLDER = ft_strlen.s \
+				ft_strcpy.s \
+				ft_strcnp.s \
+
+SRCS = $(addprefix srcs/, $(SRCS_FOLDER))
 OBJS = $(SRCS:.s=.o)
 
 RM = rm -f
@@ -24,7 +28,7 @@ $(NAME): $(OBJS)
 	$(AR) $@ $(OBJS)
 
 $(MAIN_OBJ): $(MAIN)
-	@$(ASM) $(ASFLAGS) $< -o $@
+	gcc -Wall -Wextra -Werror -c $< -o $@
 
 %.o: %.s
 	@$(ASM) $(ASFLAGS) $< -o $@
@@ -43,7 +47,7 @@ re:
 	@$(MAKE) all
 
 run:$(MAIN_OBJ)
-	$(LD) $(LDFLAGS) $(MAIN_OBJ) -L. -lasm -o $(EXEC)
+	gcc  $(MAIN_OBJ) -L. -lasm -o $(EXEC)
 	@echo $(EXEC)" compiled!\n"
 	@echo "Running " $(EXEC) "!\n\n"
 	./$(EXEC)
