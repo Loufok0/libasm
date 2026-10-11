@@ -14,8 +14,10 @@ MAIN_OBJ = $(MAIN:.c=.o)
 
 SRCS_FOLDER = ft_strlen.s \
 				ft_strcpy.s \
-				ft_strcnp.s \
+				ft_strcmp.s \
 				ft_write.s \
+				ft_read.s \
+				ft_strdup.s \
 
 SRCS = $(addprefix srcs/, $(SRCS_FOLDER))
 OBJS = $(SRCS:.s=.o)

@@ -4,10 +4,11 @@
 #include <stdlib.h>
 #include "colors.hpp"
 
-int ft_strlen(char *str);
-int ft_strcpy(char *dst, char *src);
-int ft_strcmp(char *str1, char *str2);
-int ft_write(int fd, const void *str, int size);
+size_t ft_strlen(const char *s);
+char* ft_strcpy(char *dst, const char *src);
+int ft_strcmp(const char *s1, const char *s2);
+ssize_t ft_write(int fd, const void *buf, size_t n);
+ssize_t ft_read(int fd, void *buf, size_t nbytes);
 
 
 int main()
@@ -42,8 +43,18 @@ int main()
 		else
 			printf(GREEN "No difference in strcmp funcions: %d, %d\n\n" RESET, ret1, ret2);
 
-		write(1, "this is a write test with write\n", 32);
-		ft_write(1, "this is a write test with ft_write\n", 35);
+		write(1, RESET "this is a write test with write\n", 36);
+		ft_write(1, RESET "this is a write test with ft_write\n", 39);
+		printf("\n\n");
+
+
+		char *r1 = malloc (10 * sizeof(char));
+		char *r2 = malloc (10 * sizeof(char));
+
+		write(1, BLUE "this read test with read function\n" RESET, 43);
+		read(1, r1, 10); // ou 9?
+		ft_write(1, BLUE "this read test with ft_read function\n" RESET, 46);
+		ft_read(1, r2, 10); // ou 9?
 
 		printf("\n\n");
 
